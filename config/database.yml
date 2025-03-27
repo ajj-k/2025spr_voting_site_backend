@@ -1,10 +1,12 @@
-default_env: &default
+default: &default
   adapter: postgresql
   encoding: unicode
-  database: bbs_original
+  pool: 5
 
 development:
   <<: *default
+  database: bbs_original
 
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
