@@ -16,7 +16,7 @@ end
 post "/:id/count" do
   mentor = Mentor.find_by(id: params[:id])
   if mentor
-    item.increment!(:voting)
+    mentor.increment!(:voting)
     content_type :json
     { id: mentor.id, name: mentor.name, voting: mentor.voting }.to_json
   else
