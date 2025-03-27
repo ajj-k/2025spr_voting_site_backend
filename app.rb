@@ -25,9 +25,20 @@ post "/:id/count" do
   end
 end
 
+get "/mentor" do
+  mentor = Mentor.find_by(id: params[:id])
+  if mentor
+    content_type :json
+    { id: mentor.id, name: mentor.name, voting: mentor.voting }.to_json
+  else
+    status 404
+    { error: "Mentor not found" }.to_json
+  end
+end
+
 get "/mentors" do
   mentors = Mentor.all
-  if mentor
+  if mentors
     content_type :json
     { mentors: mentors }
   else
