@@ -24,3 +24,14 @@ post "/:id/count" do
     { error: "Mentor not found" }.to_json
   end
 end
+
+get "/mentors" do
+  mentors = Mentor.all
+  if mentor
+    content_type :json
+    { mentors: mentors }
+  else
+    status 404
+    { error: "Mentor not found" }.to_json
+  end
+end
