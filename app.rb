@@ -40,7 +40,7 @@ get "/mentors" do
   mentors = Mentor.all
   if mentors
     content_type :json
-    { mentors: mentors }
+    { mentors: mentors.as_json }.to_json
   else
     status 404
     { error: "Mentor not found" }.to_json
